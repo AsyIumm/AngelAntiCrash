@@ -1,0 +1,31 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+OrionLib:MakeNotification({
+	Name = "Angels Anti-Crash",
+	Content = "Angels Anti-Crash Has Been Enabled",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+
+repeat task.wait() until game:IsLoaded()
+for i,v in pairs(workspace:GetChildren()) do
+    if v:IsA("Tool") then
+        v:Destroy()
+    end;
+end;
+
+wait();
+			 
+
+
+
+if _G.AntiCrash then _G.AntiCrash:Disconnect() end;
+_G.AntiCrash = workspace["ChildAdded"]:connect(function(v)
+    coroutine.wrap(function()
+        repeat task.wait() until v:FindFirstChild("Handle", true)
+        if v:IsA("Tool") then
+            v:Destroy()
+        end;
+    end)()
+end)
